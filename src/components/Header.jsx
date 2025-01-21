@@ -1,6 +1,6 @@
-import { BellDot, CircleUserRound } from "lucide-react";
+import {   CircleUserRound } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { login , logout } from "../store/slice";
 import { useEffect } from "react";
@@ -10,11 +10,9 @@ function Header() {
   const user = useSelector((state) => state.user); 
   // console.log(user)
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const fetchCurrentUser = async () => {
     const res = await getCurrentUser();
-    // console.log(res.data.);
     dispatch(login(res.data.userInfo[0]));
   };
 
@@ -43,10 +41,9 @@ function Header() {
             </Link>
           </div>
         ) : (
-          <div className=" flex   text-xl space-x-6 ">
+          <div className=" flex  items-center text-xl space-x-6 ">
             <div
-              onClick={() => navigate("/me")}
-              className="font-normal flex gap-2 cursor-pointer "
+              className="font-normal flex gap-2  "
             >
               <CircleUserRound size={35} />
               <p>{user.user.username}</p>
